@@ -91,10 +91,8 @@ function drawPipes(tiles, pipes) {
 function updatePipes() {
     if (pipes[0].isLeftOfScreen()) {
         pipes.splice(0, 1);
-        console.log('removed first');
     }
     if (needToSpawnPipe()) {
-        console.log('Need to spawn');
         spawnPipe();
     }
     pipes.forEach(p => p.update());
