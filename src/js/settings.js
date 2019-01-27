@@ -3,5 +3,5 @@ const SETTINGS = {
     HEIGHT: 256,
     PLAYER_W: 18,
     PLAYER_H: 12,
-    PIPE_DISTANCE: 54,
+    PIPE_DISTANCE: 50,
 }

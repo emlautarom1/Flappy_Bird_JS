@@ -87,20 +87,26 @@ function drawPipes(tiles, pipes) {
 
 }
 
-function initPipes(count) {
-    for (let i = 0; i < count; i++) {
-        pipes.push(new PipePair(
-            SETTINGS.WIDTH +
-            PipePair.w * i +
-            SETTINGS.PIPE_DISTANCE * i
-        ));
-    }
-}
 
 function updatePipes() {
+    if (pipes[0].isLeftOfScreen()) {
+        pipes.splice(0, 1);
+        console.log('removed first');
+    }
+    if (needToSpawnPipe()) {
+        console.log('Need to spawn');
+        spawnPipe();
+    }
     pipes.forEach(p => p.update());
 }
 
+function needToSpawnPipe() {
+    return pipes[pipes.length - 1].x + PipePair.w + SETTINGS.PIPE_DISTANCE < SETTINGS.WIDTH;
+}
+
+function spawnPipe() {
+    pipes.push(new PipePair(SETTINGS.WIDTH));
+}
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -126,9 +132,9 @@ function mainLoop() {
 let tiles;
 // Game objects
 const player = new Player();
-let pipes = []
+const pipes = [];
+spawnPipe();
 
-initPipes(3);
 loadImage('src/img/tiles.png').then(
     img => {
         tiles = img;
