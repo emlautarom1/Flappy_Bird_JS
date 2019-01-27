@@ -1,4 +1,4 @@
 const SETTINGS = {
-    WIDTH: 128,
+    WIDTH: 144,
     HEIGHT: 256,
 }
