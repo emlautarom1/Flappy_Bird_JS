@@ -28,20 +28,17 @@ function drawBG(tiles) {
     )
 };
 
-function drawPlayer(tiles) {
-    const w = 18;
-    const h = 12;
-    const leftOffset = 36;
+function drawPlayer(tiles, player) {
     ctx.drawImage(
         tiles,
         3, // Source x
         491, // Source y
-        w, // Source width -> Player width
-        h, // Source height -> Player height
-        leftOffset, // Destination x
-        SETTINGS.HEIGHT / 2, // Destination y
-        w, // Destination width -> Player width
-        h // Destination height -> Player height
+        player.w,
+        player.h,
+        player.x,
+        player.y,
+        player.w,
+        player.h
     )
 }
 
@@ -66,14 +63,18 @@ function clearCanvas() {
 
 function mainLoop() {
     clearCanvas();
+    // Update
+    player.update();
+    // Draw
     drawBG(tiles);
     drawFloor(tiles);
-    drawPlayer(tiles);
+    drawPlayer(tiles, player);
     // Animation looper
     window.requestAnimationFrame(mainLoop);
 }
 
 let tiles;
+const player = new Player();
 
 loadImage('src/img/tiles.png').then(
     img => {
