@@ -4,9 +4,9 @@ class Player {
         this.x = 36
         this.y = SETTINGS.HEIGHT / 2
         // Size
-        this.w = 18;
-        this.h = 12;
-        // Y-speed or gravity
+        this.w = SETTINGS.PLAYER_W;
+        this.h = SETTINGS.PLAYER_H;
+        // Y-speed / gravity
         this.yspeed = 2;
     }
 
