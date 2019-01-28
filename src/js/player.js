@@ -6,20 +6,21 @@ class Player {
         // Size
         this.w = GLOBAL.PLAYER_W;
         this.h = GLOBAL.PLAYER_H;
-        // Y-speed / gravity
-        this.yspeed = 2;
+        // Y-speed
+        this.yspeed = 0;
     }
 
     update() {
-        this.y += this.yspeed;
+        this.y = Math.floor(this.y + this.yspeed);
+        // Gravity
+        this.yspeed += GLOBAL.GRAVITY;
         if (this.y > GLOBAL.CANVAS_H) {
             this.y = 0;
+            this.yspeed = 0;
         }
     }
 
-    handler(ev) {
-        console.log(ev);
-        this.yspeed = 80;
-        console.log(this.yspeed);
+    handler() {
+        this.yspeed = GLOBAL.JUMP
     }
 }

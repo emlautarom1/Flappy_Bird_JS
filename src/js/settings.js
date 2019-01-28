@@ -5,5 +5,7 @@ const GLOBAL = {
     PLAYER_H: 12,
     PIPE_DISTANCE: 50,
     FLOOR_H: 56,
-    SPEED: 1
+    SPEED: 1,
+    GRAVITY: 0.2,
+    JUMP: -2.5
 }
