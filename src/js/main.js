@@ -1,9 +1,3 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = false; // Disable AA
-canvas.setAttribute('width', SETTINGS.WIDTH);
-canvas.setAttribute('height', SETTINGS.HEIGHT);
-
 function loadImage(url) {
     return new Promise(resolve => {
         const img = new Image();
@@ -13,80 +7,6 @@ function loadImage(url) {
         img.src = url;
     });
 }
-
-function drawBG(tiles) {
-    ctx.drawImage(
-        tiles,
-        0, // Source x
-        0, // Source y
-        SETTINGS.WIDTH, // Source width 
-        SETTINGS.HEIGHT, // Source height
-        0, // Destination x
-        0, // Destination y
-        SETTINGS.WIDTH, // Destination width
-        SETTINGS.HEIGHT // Destination height
-    )
-};
-
-function drawPlayer(tiles, player) {
-    ctx.drawImage(
-        tiles,
-        3, // Source x
-        491, // Source y
-        player.w,
-        player.h,
-        player.x,
-        player.y,
-        player.w,
-        player.h
-    )
-}
-
-function drawFloor(tiles) {
-    const h = 56;
-    ctx.drawImage(
-        tiles,
-        292, // Source x
-        0, // Source y
-        SETTINGS.WIDTH, // Source width 
-        h, // Source height
-        0, // Destination x
-        SETTINGS.HEIGHT - h, // Destination y
-        SETTINGS.WIDTH, // Destination width
-        h // Destination height
-    );
-}
-
-function drawPipes(tiles, pipes) {
-    pipes.forEach(p => {
-        // Top green pipe
-        ctx.drawImage(
-            tiles,
-            56, // Source x
-            323, // Source y
-            PipePair.w, // Source width 
-            PipePair.h, // Source height
-            p.x, // Destination x
-            p.topY, // Destination y
-            PipePair.w, // Destination width
-            PipePair.h // Destination height
-        );
-        // Bottom green pipe
-        ctx.drawImage(
-            tiles,
-            84, // Source x
-            323, // Source y
-            PipePair.w, // Source width 
-            PipePair.h, // Source height
-            p.x, // Destination x
-            p.bottomY, // Destination y
-            PipePair.w, // Destination width
-            PipePair.h // Destination height
-        );
-    });
-
-}
-
 
 function updatePipes() {
     if (pipes[0].isLeftOfScreen()) {
@@ -99,43 +19,80 @@ function updatePipes() {
 }
 
 function needToSpawnPipe() {
-    return pipes[pipes.length - 1].x + PipePair.w + SETTINGS.PIPE_DISTANCE < SETTINGS.WIDTH;
+    return pipes[pipes.length - 1].x + PipePair.w + GLOBAL.PIPE_DISTANCE < GLOBAL.CANVAS_W;
 }
 
 function spawnPipe() {
-    pipes.push(new PipePair(SETTINGS.WIDTH));
+    pipes.push(new PipePair(GLOBAL.CANVAS_W));
 }
 
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function didCollide(player, pipes) {
+    if (player.y + player.h > GLOBAL.CANVAS_H - GLOBAL.FLOOR_H) {
+        return true;
+    }
+
+    for (let i = 0; i < pipes.length; i++) {
+        const pipe = pipes[i];
+        if (player.x < pipe.x + PipePair.w &&
+            player.x + player.w > pipe.x &&
+            player.y < pipe.topY + PipePair.h &&
+            player.h + player.y > pipe.topY) {
+            return true;
+        }
+
+        if (player.x < pipe.x + PipePair.w &&
+            player.x + player.w > pipe.x &&
+            player.y < pipe.bottomY + PipePair.h &&
+            player.h + player.y > pipe.bottomY) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function mainLoop() {
-    clearCanvas();
+    draw.clear();
     // Update
     player.update();
     updatePipes();
-    // Draw
-    drawBG(tiles);
-    drawPipes(tiles, pipes);
-    drawFloor(tiles);
-    drawPlayer(tiles, player);
-    // Animation looper
 
-    setTimeout(() => {
-        window.requestAnimationFrame(mainLoop);
-    }, 50);
+    // Draw
+    draw.background();
+    draw.pipes(pipes);
+    draw.floor();
+    draw.player(player);
+
+    // Collision detection
+    if (didCollide(player, pipes)) {
+        // console.log('player collided!');
+    }
+
+    // Animation looper
+    window.requestAnimationFrame(mainLoop);
+    // setTimeout(() => {
+    //     window.requestAnimationFrame(mainLoop);
+    // }, 100);
 }
 
-let tiles;
+// Initial setup
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+ctx.imageSmoothingEnabled = false; // Disable AA
+canvas.setAttribute('width', GLOBAL.CANVAS_W);
+canvas.setAttribute('height', GLOBAL.CANVAS_H);
+
+// Utils
+const draw = new Draw(ctx);
 // Game objects
 const player = new Player();
 const pipes = [];
 spawnPipe();
 
+document.onclick = player.handler;
+
 loadImage('src/img/tiles.png').then(
     img => {
-        tiles = img;
-        mainLoop(tiles);
+        draw.tiles = img
+        mainLoop();
     }
 );

@@ -25,7 +25,7 @@ class PipePair {
     }
 
     update() {
-        this.x -= PipePair.xspeed;
+        this.x -= GLOBAL.SPEED;
     }
 
 }
@@ -33,6 +33,5 @@ class PipePair {
 PipePair.w = 26;
 PipePair.h = 160;
 PipePair.headH = 12;
-PipePair.gap = SETTINGS.HEIGHT / 4;
-PipePair.xspeed = 2;
-PipePair.previousRnd = -SETTINGS.HEIGHT;
+PipePair.gap = GLOBAL.CANVAS_H / 4;
+PipePair.previousRnd = -GLOBAL.CANVAS_H;
