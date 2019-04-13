@@ -3,9 +3,9 @@ const GLOBAL = {
     CANVAS_H: 256,
     PLAYER_W: 18,
     PLAYER_H: 12,
-    PIPE_DISTANCE: 50,
+    PIPE_DISTANCE: 80,
     FLOOR_H: 56,
     SPEED: 1,
-    GRAVITY: 0.2,
+    GRAVITY: 0.15,
     JUMP: -2.5
 }

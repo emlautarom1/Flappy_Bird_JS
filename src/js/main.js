@@ -64,7 +64,7 @@ function mainLoop() {
 
     // Collision detection
     if (didCollide(player, pipes)) {
-        console.log('player collided!');
+        return;
     }
 
     // Animation looper
@@ -89,6 +89,7 @@ const pipes = [];
 spawnPipe();
 
 document.onclick = () => player.handler();
+document.ontouchend = () => player.handler();
 
 loadImage('src/img/tiles.png').then(
     img => {

@@ -20,7 +20,11 @@ class Player {
         }
     }
 
+    jump() {
+        this.yspeed = GLOBAL.JUMP;
+    }
+
     handler() {
-        this.yspeed = GLOBAL.JUMP
+        this.jump();
     }
 }
