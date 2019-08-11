@@ -1,7 +1,7 @@
 class Player {
     constructor() {
         // Positions
-        this.x = 36
+        this.x = 36;
         this.y = GLOBAL.CANVAS_H / 2
         // Size
         this.w = GLOBAL.PLAYER_W;

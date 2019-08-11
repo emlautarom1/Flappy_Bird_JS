@@ -10,4 +10,4 @@ const GLOBAL = {
     SPEED: 0.5,
     GRAVITY: 0.10,
     JUMP: -2
-}
+};

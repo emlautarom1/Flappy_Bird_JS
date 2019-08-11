@@ -1,6 +1,6 @@
 class Draw {
     constructor(ctx) {
-        this.ctx = ctx
+        this.ctx = ctx;
         this.tiles;
         this.scoreContainer = document.getElementById("score");
     }

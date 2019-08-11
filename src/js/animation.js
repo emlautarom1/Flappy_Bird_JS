@@ -1,6 +1,6 @@
 class PlayerAnimation {
     constructor() {
-        this.playerSprites = [3, 31, 59, 31]
+        this.playerSprites = [3, 31, 59, 31];
         this.currentSprite = 0;
         this.enabled = true;
     }
