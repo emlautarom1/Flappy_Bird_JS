@@ -2,12 +2,13 @@ class Draw {
     constructor(ctx) {
         this.ctx = ctx
         this.tiles;
+        this.scoreContainer = document.getElementById("score");
     }
 
-    player(player) {
+    player(player, offset) {
         this.ctx.drawImage(
             this.tiles,
-            3, // Source x
+            offset, // Source x
             491, // Source y
             player.w,
             player.h,
@@ -73,6 +74,13 @@ class Draw {
             GLOBAL.CANVAS_W, // Destination width
             GLOBAL.FLOOR_H // Destination height
         );
+    }
+
+    score(score) {
+        if (score.needsToRedraw) {
+            this.scoreContainer.innerText = `SCORE: ${score.value}`
+            score.needsToRedraw = false;
+        }
     }
 
     clear() {
