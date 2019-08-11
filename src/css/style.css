@@ -1,10 +1,44 @@
+@font-face {
+    font-family: 'FlappyBird';
+    src: url('../font/font.ttf') format('truetype');
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
+body {
+    overflow-y: hidden;
+    background: repeating-linear-gradient(
+    to right,
+    #f6ba52,
+    #f6ba52 20px,
+    #ffd180 20px,
+    #ffd180 40px
+);
+}
+
+.container {
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#score {
+    position: absolute;
+    z-index: 1;
+    margin-top: 5vh;
+    color: #ffffff;
+    text-shadow: #000000 5px 5px;
+    font-family: 'FlappyBird', Fallback, sans-serif;
+    font-size: 2rem;
+    user-select: none;
+}
+
 #canvas {
-    height: -webkit-fill-available;
+    z-index: 0;
+    min-height: 100vh;
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
