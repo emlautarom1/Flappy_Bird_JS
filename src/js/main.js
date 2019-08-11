@@ -13,6 +13,7 @@ function updatePipes() {
         pipes.splice(0, 1);
     }
     if (needToSpawnPipe()) {
+        score.increase();
         spawnPipe();
     }
     pipes.forEach(p => p.update());
@@ -22,8 +23,8 @@ function needToSpawnPipe() {
     return pipes[pipes.length - 1].x + PipePair.w + GLOBAL.PIPE_DISTANCE < GLOBAL.CANVAS_W;
 }
 
-function spawnPipe() {
-    pipes.push(new PipePair(GLOBAL.CANVAS_W));
+function spawnPipe(offset = 0) {
+    pipes.push(new PipePair(GLOBAL.CANVAS_W + offset));
 }
 
 function didCollide(player, pipes) {
@@ -54,17 +55,19 @@ function mainLoop() {
     draw.clear();
     // Update
     player.update();
+    anim.update();
     updatePipes();
 
     // Draw
     draw.background();
     draw.pipes(pipes);
     draw.floor();
-    draw.player(player);
+    draw.player(player, anim.getPlayerSprite());
+    draw.score(score);
 
     // Collision detection
     if (didCollide(player, pipes)) {
-        return;
+        // return;
     }
 
     // Animation looper
@@ -83,10 +86,12 @@ canvas.setAttribute('height', GLOBAL.CANVAS_H);
 
 // Utils
 const draw = new Draw(ctx);
+const anim = new PlayerAnimation();
 // Game objects
 const player = new Player();
+const score = new Score(() => console.log('Score updated'));
 const pipes = [];
-spawnPipe();
+spawnPipe(GLOBAL.PIPE_INITIAL_OFFSET);
 
 document.onclick = () => player.handler();
 document.ontouchend = () => player.handler();
