@@ -55,14 +55,13 @@ function mainLoop() {
     draw.clear();
     // Update
     player.update();
-    anim.update();
     updatePipes();
 
     // Draw
     draw.background();
     draw.pipes(pipes);
     draw.floor();
-    draw.player(player, anim.getPlayerSprite());
+    draw.player(player);
     draw.score(score);
 
     // Collision detection
@@ -86,7 +85,6 @@ canvas.setAttribute('height', GLOBAL.CANVAS_H);
 
 // Utils
 const draw = new Draw(ctx);
-const anim = new PlayerAnimation();
 // Game objects
 const player = new Player();
 const score = new Score(() => console.log('Score updated'));

@@ -5,10 +5,10 @@ class Draw {
         this.scoreContainer = document.getElementById("score");
     }
 
-    player(player, offset) {
+    player(player) {
         this.ctx.drawImage(
             this.tiles,
-            offset, // Source x
+            player.getSprite(), // Source x
             491, // Source y
             player.w,
             player.h,
