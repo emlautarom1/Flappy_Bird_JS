@@ -87,7 +87,7 @@ canvas.setAttribute('height', GLOBAL.CANVAS_H);
 const draw = new Draw(ctx);
 // Game objects
 const player = new Player();
-const score = new Score(() => console.log('Score updated'));
+const score = new Score(() => draw.score(score));
 const pipes = [];
 spawnPipe(GLOBAL.PIPE_INITIAL_OFFSET);
 
@@ -96,7 +96,7 @@ document.ontouchend = () => player.handler();
 
 loadImage('src/img/tiles.png').then(
     img => {
-        draw.tiles = img
+        draw.tiles = img;
         mainLoop();
     }
 );

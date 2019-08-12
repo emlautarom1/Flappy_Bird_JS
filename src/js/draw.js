@@ -77,10 +77,7 @@ class Draw {
     }
 
     score(score) {
-        if (score.needsToRedraw) {
-            this.scoreContainer.innerText = `SCORE: ${score.value}`
-            score.needsToRedraw = false;
-        }
+        this.scoreContainer.innerText = `SCORE: ${score.value}`
     }
 
     clear() {
