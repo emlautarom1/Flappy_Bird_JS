@@ -51,6 +51,16 @@ function didCollide(player, pipes) {
     return false;
 }
 
+function initGameObjects() {
+    player = new Player();
+    pipes = [];
+    score = new Score(() => {
+        // scoredAudio.play();
+        draw.score(score.value);
+    });
+    spawnPipe(GLOBAL.PIPE_INITIAL_OFFSET);
+}
+
 function mainLoop() {
     draw.clear();
     // Update
@@ -65,7 +75,7 @@ function mainLoop() {
 
     // Collision detection
     if (didCollide(player, pipes)) {
-        // return;
+        return;
     }
 
     // Animation looper
@@ -85,21 +95,21 @@ canvas.setAttribute('height', GLOBAL.CANVAS_H);
 // Utils
 const draw = new Draw(ctx);
 const scoredAudio = new Audio('src/audio/scored.wav');
-// Game objects
-const player = new Player();
-const score = new Score(() => {
-    scoredAudio.play();
-    draw.score(score.value);
-});
-const pipes = [];
-spawnPipe(GLOBAL.PIPE_INITIAL_OFFSET);
 
+// Game objects
+let player;
+let pipes;
+let score;
+
+// Event handling
 document.onclick = () => player.handler();
 document.ontouchend = () => player.handler();
 
+// On assets load
 loadImage('src/img/tiles.png').then(
     img => {
         draw.tiles = img;
+        initGameObjects();
         mainLoop();
     }
 );
