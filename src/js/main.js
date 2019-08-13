@@ -58,7 +58,15 @@ function initGameObjects() {
         // scoredAudio.play();
         draw.score(score.value);
     });
+    // Initial 0 score draw
+    draw.score(score.value);
     spawnPipe(GLOBAL.PIPE_INITIAL_OFFSET);
+}
+
+function onDeath() {
+    alert(`You lost! Your score: ${score.value}`);
+    initGameObjects();
+    mainLoop();
 }
 
 function mainLoop() {
@@ -75,14 +83,12 @@ function mainLoop() {
 
     // Collision detection
     if (didCollide(player, pipes)) {
+        onDeath();
         return;
     }
 
     // Animation looper
     window.requestAnimationFrame(mainLoop);
-    // setTimeout(() => {
-    //     window.requestAnimationFrame(mainLoop);
-    // }, 100);
 }
 
 // Initial setup
