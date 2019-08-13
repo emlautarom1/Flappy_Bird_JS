@@ -21,7 +21,7 @@ class Background {
         if (this.landscapePattern === 'day') {
             return 0;
         } else {
-            return 145;
+            return 146;
         }
     }
 
