@@ -84,9 +84,13 @@ canvas.setAttribute('height', GLOBAL.CANVAS_H);
 
 // Utils
 const draw = new Draw(ctx);
+const scoredAudio = new Audio('src/audio/scored.wav');
 // Game objects
 const player = new Player();
-const score = new Score(() => draw.score(score.value));
+const score = new Score(() => {
+    scoredAudio.play();
+    draw.score(score.value);
+});
 const pipes = [];
 spawnPipe(GLOBAL.PIPE_INITIAL_OFFSET);
 
