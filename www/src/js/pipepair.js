@@ -33,5 +33,5 @@ class PipePair {
 PipePair.w = 26;
 PipePair.h = 160;
 PipePair.headH = 12;
-PipePair.gap = GLOBAL.CANVAS_H / 4;
+PipePair.gap = GLOBAL.CANVAS_H / 5;
 PipePair.previousRnd = -GLOBAL.CANVAS_H;

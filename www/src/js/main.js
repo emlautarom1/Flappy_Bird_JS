@@ -56,10 +56,10 @@ function initGameObjects() {
     pipes = [];
     background = new Background();
     score = new Score(() => {
-        // scoredAudio.play();
+        scoredAudio.play();
         draw.score(score.value);
         if (score.value % 10 === 0) {
-            // levelUpAudio.play();
+            levelUpAudio.play();
             background.flipLandscape();
         }
     });
@@ -90,8 +90,8 @@ function mainLoop() {
 
     // Collision detection
     if (didCollide(player, pipes)) {
-        // onDeath();
-        // return;
+        onDeath();
+        return;
     }
 
     // Animation looper
