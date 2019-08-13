@@ -76,8 +76,8 @@ class Draw {
         );
     }
 
-    score(score) {
-        this.scoreContainer.innerText = `SCORE: ${score.value}`
+    score(value) {
+        this.scoreContainer.innerText = `SCORE: ${value}`
     }
 
     clear() {

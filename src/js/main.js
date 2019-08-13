@@ -62,7 +62,6 @@ function mainLoop() {
     draw.pipes(pipes);
     draw.floor();
     draw.player(player);
-    draw.score(score);
 
     // Collision detection
     if (didCollide(player, pipes)) {
@@ -87,7 +86,7 @@ canvas.setAttribute('height', GLOBAL.CANVAS_H);
 const draw = new Draw(ctx);
 // Game objects
 const player = new Player();
-const score = new Score(() => draw.score(score));
+const score = new Score(() => draw.score(score.value));
 const pipes = [];
 spawnPipe(GLOBAL.PIPE_INITIAL_OFFSET);
 
