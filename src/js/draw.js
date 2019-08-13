@@ -55,21 +55,45 @@ class Draw {
             0, // Source y
             GLOBAL.CANVAS_W, // Source width 
             GLOBAL.CANVAS_H, // Source height
-            0, // Destination x
+            bg.xlandscape, // Destination x
             0, // Destination y
             GLOBAL.CANVAS_W, // Destination width
             GLOBAL.CANVAS_H // Destination height
-        )
+        );
+
+        this.ctx.drawImage(
+            this.tiles,
+            bg.landscapeSpriteX(), // Source x
+            0, // Source y
+            GLOBAL.CANVAS_W, // Source width 
+            GLOBAL.CANVAS_H, // Source height
+            bg.xlandscape + GLOBAL.CANVAS_W - 1, // Destination x
+            0, // Destination y
+            GLOBAL.CANVAS_W, // Destination width
+            GLOBAL.CANVAS_H // Destination height
+        );
     }
 
-    floor() {
+    floor(bg) {
         this.ctx.drawImage(
             this.tiles,
             292, // Source x
             0, // Source y
             GLOBAL.CANVAS_W, // Source width 
             GLOBAL.FLOOR_H, // Source height
-            0, // Destination x
+            bg.xfloor, // Destination x
+            GLOBAL.CANVAS_H - GLOBAL.FLOOR_H, // Destination y
+            GLOBAL.CANVAS_W, // Destination width
+            GLOBAL.FLOOR_H // Destination height
+        );
+
+        this.ctx.drawImage(
+            this.tiles,
+            292, // Source x
+            0, // Source y
+            GLOBAL.CANVAS_W, // Source width 
+            GLOBAL.FLOOR_H, // Source height
+            bg.xfloor + GLOBAL.CANVAS_W - 1, // Destination x
             GLOBAL.CANVAS_H - GLOBAL.FLOOR_H, // Destination y
             GLOBAL.CANVAS_W, // Destination width
             GLOBAL.FLOOR_H // Destination height

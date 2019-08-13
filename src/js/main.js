@@ -76,13 +76,14 @@ function onDeath() {
 function mainLoop() {
     draw.clear();
     // Update
+    background.update();
     player.update();
     updatePipes();
 
     // Draw
     draw.landscape(background);
     draw.pipes(pipes);
-    draw.floor();
+    draw.floor(background);
     draw.player(player);
 
     // Collision detection
