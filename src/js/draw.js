@@ -48,10 +48,10 @@ class Draw {
         });
     }
 
-    background() {
+    landscape(bg) {
         this.ctx.drawImage(
             this.tiles,
-            0, // Source x
+            bg.landscapeSpriteX(), // Source x
             0, // Source y
             GLOBAL.CANVAS_W, // Source width 
             GLOBAL.CANVAS_H, // Source height

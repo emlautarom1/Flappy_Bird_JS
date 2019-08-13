@@ -7,6 +7,7 @@ const GLOBAL = {
     PIPE_INITIAL_OFFSET: 50,
     PIPE_DISTANCE: 60,
     FLOOR_H: 56,
+    LANDSCAPE_SPEED: 0.2,
     SPEED: 0.5,
     GRAVITY: 0.10,
     JUMP: -2

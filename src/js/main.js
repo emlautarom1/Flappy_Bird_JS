@@ -54,9 +54,13 @@ function didCollide(player, pipes) {
 function initGameObjects() {
     player = new Player();
     pipes = [];
+    background = new Background();
     score = new Score(() => {
         // scoredAudio.play();
         draw.score(score.value);
+        if (score.value % 10 === 0) {
+            background.flipLandscape();
+        }
     });
     // Initial 0 score draw
     draw.score(score.value);
@@ -76,15 +80,15 @@ function mainLoop() {
     updatePipes();
 
     // Draw
-    draw.background();
+    draw.landscape(background);
     draw.pipes(pipes);
     draw.floor();
     draw.player(player);
 
     // Collision detection
     if (didCollide(player, pipes)) {
-        onDeath();
-        return;
+        // onDeath();
+        // return;
     }
 
     // Animation looper
@@ -105,6 +109,7 @@ const scoredAudio = new Audio('src/audio/scored.wav');
 // Game objects
 let player;
 let pipes;
+let background;
 let score;
 
 // Event handling
