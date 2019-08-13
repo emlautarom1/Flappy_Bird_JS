@@ -56,9 +56,10 @@ function initGameObjects() {
     pipes = [];
     background = new Background();
     score = new Score(() => {
-        // scoredAudio.play();
+        scoredAudio.play();
         draw.score(score.value);
         if (score.value % 10 === 0) {
+            levelUpAudio.play();
             background.flipLandscape();
         }
     });
@@ -68,6 +69,7 @@ function initGameObjects() {
 }
 
 function onDeath() {
+    deathAudio.play();
     alert(`You lost! Your score: ${score.value}`);
     initGameObjects();
     mainLoop();
@@ -106,6 +108,8 @@ canvas.setAttribute('height', GLOBAL.CANVAS_H);
 // Utils
 const draw = new Draw(ctx);
 const scoredAudio = new Audio('src/audio/scored.wav');
+const deathAudio = new Audio('src/audio/death.wav');
+const levelUpAudio = new Audio('src/audio/level_up.wav');
 
 // Game objects
 let player;
