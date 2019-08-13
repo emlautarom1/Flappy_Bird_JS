@@ -55,7 +55,7 @@ class Draw {
             0, // Source y
             GLOBAL.CANVAS_W, // Source width 
             GLOBAL.CANVAS_H, // Source height
-            bg.xlandscape, // Destination x
+            bg.xlandscape + 1, // Destination x
             0, // Destination y
             GLOBAL.CANVAS_W, // Destination width
             GLOBAL.CANVAS_H // Destination height
@@ -67,7 +67,7 @@ class Draw {
             0, // Source y
             GLOBAL.CANVAS_W, // Source width 
             GLOBAL.CANVAS_H, // Source height
-            bg.xlandscape + GLOBAL.CANVAS_W - 1, // Destination x
+            bg.xlandscape + GLOBAL.CANVAS_W, // Destination x
             0, // Destination y
             GLOBAL.CANVAS_W, // Destination width
             GLOBAL.CANVAS_H // Destination height
@@ -81,7 +81,7 @@ class Draw {
             0, // Source y
             GLOBAL.CANVAS_W, // Source width 
             GLOBAL.FLOOR_H, // Source height
-            bg.xfloor, // Destination x
+            bg.xfloor + 1, // Destination x
             GLOBAL.CANVAS_H - GLOBAL.FLOOR_H, // Destination y
             GLOBAL.CANVAS_W, // Destination width
             GLOBAL.FLOOR_H // Destination height
@@ -93,7 +93,7 @@ class Draw {
             0, // Source y
             GLOBAL.CANVAS_W, // Source width 
             GLOBAL.FLOOR_H, // Source height
-            bg.xfloor + GLOBAL.CANVAS_W - 1, // Destination x
+            bg.xfloor + GLOBAL.CANVAS_W, // Destination x
             GLOBAL.CANVAS_H - GLOBAL.FLOOR_H, // Destination y
             GLOBAL.CANVAS_W, // Destination width
             GLOBAL.FLOOR_H // Destination height
