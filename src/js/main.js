@@ -70,12 +70,11 @@ function initGameObjects() {
 
 function onDeath() {
     deathAudio.play();
-    alert(`You lost! Your score: ${score.value}`);
+    // alert(`You lost! Your score: ${score.value}`);
     initGameObjects();
-    gameLoop();
 }
 
-function gameLoop(dt) {
+function mainLoop(dt) {
     draw.clear();
     // Update
     background.update(dt);
@@ -90,8 +89,8 @@ function gameLoop(dt) {
 
     // Collision detection
     if (didCollide(player, pipes)) {
-        // onDeath();
-        // return;
+        onDeath();
+        return;
     }
 }
 
@@ -122,12 +121,12 @@ document.ontouchend = () => player.handler();
 
 // Animation Loop
 let lastTime = 0;
-function animatedLoop(mil) {
+function animationLoop(mil) {
     if (lastTime) {
-        gameLoop((mil - lastTime) / 10);
-    };
+        mainLoop((mil - lastTime) / 10);
+    }
     lastTime = mil;
-    window.requestAnimationFrame(animatedLoop);
+    window.requestAnimationFrame(animationLoop);
 }
 
 // On assets load
@@ -135,6 +134,6 @@ loadImage('src/img/tiles.png').then(
     img => {
         draw.tiles = img;
         initGameObjects();
-        animatedLoop();
+        animationLoop();
     }
 );

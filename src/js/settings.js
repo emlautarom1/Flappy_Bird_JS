@@ -10,5 +10,5 @@ const GLOBAL = {
     LANDSCAPE_SPEED: 0.2,
     SPEED: 0.5,
     GRAVITY: 0.08,
-    JUMP: -2.5
+    JUMP: -2
 };

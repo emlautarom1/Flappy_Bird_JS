@@ -5,13 +5,13 @@ class Background {
         this.xfloor = 0;
     }
 
-    update() {
-        this.xlandscape -= GLOBAL.LANDSCAPE_SPEED;
+    update(dt) {
+        this.xlandscape -= GLOBAL.LANDSCAPE_SPEED * dt;
         if (this.xlandscape < -GLOBAL.CANVAS_W) {
             this.xlandscape = 0;
         }
 
-        this.xfloor -= GLOBAL.SPEED;
+        this.xfloor -= GLOBAL.SPEED * dt;
         if (this.xfloor < -GLOBAL.CANVAS_W) {
             this.xfloor = 0;
         }
