@@ -38,6 +38,7 @@ body {
 
 #canvas {
     box-sizing: border-box;
+    min-height: 100vh;
     border-left: 10px solid #ffffff;
     border-right: 10px solid #ffffff;
     z-index: 0;

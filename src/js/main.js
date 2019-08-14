@@ -70,7 +70,7 @@ function initGameObjects() {
 
 function onDeath() {
     deathAudio.play();
-    // alert(`You lost! Your score: ${score.value}`);
+    alert(`You lost! Your score: ${score.value}`);
     initGameObjects();
 }
 
