@@ -15,7 +15,7 @@ Any key input or click makes the bird `Jump`
 Tap anywhere on the screen to make the bird `Jump`
 
 ## Building for mobile
-The game can be deployed in mobile using `Cordova`. In the release page you can find a debug version for **Android**.
+The game can be deployed in mobile using `Cordova`.
 
 ## Screenshot
 <div style="text-align= center;">
