@@ -18,6 +18,4 @@ Tap anywhere on the screen to make the bird `Jump`
 The game can be deployed in mobile using `Cordova`.
 
 ## Screenshot
-<div style="text-align= center;">
-    <img src="screens/game.png" alt="Sublime's custom image"/>
-</div>
+![Game](screens/game.png)
