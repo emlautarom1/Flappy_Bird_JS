@@ -41,9 +41,7 @@ body {
     border-left: 10px solid #ffffff;
     border-right: 10px solid #ffffff;
     z-index: 0;
-    min-height: 100vh;
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
-    image-rendering: crisp-edges;
 }

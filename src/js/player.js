@@ -15,10 +15,10 @@ class Player {
         this.updateSprite();
     }
 
-    update() {
+    update(dt) {
         this.y = Math.floor(this.y + this.yspeed);
         // Gravity
-        this.yspeed += GLOBAL.GRAVITY;
+        this.yspeed += GLOBAL.GRAVITY * dt;
         if (this.y > GLOBAL.CANVAS_H) {
             this.y = 0;
             this.yspeed = 0;

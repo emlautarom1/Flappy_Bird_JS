@@ -9,6 +9,6 @@ const GLOBAL = {
     FLOOR_H: 56,
     LANDSCAPE_SPEED: 0.2,
     SPEED: 0.5,
-    GRAVITY: 0.10,
-    JUMP: -2
+    GRAVITY: 0.08,
+    JUMP: -2.5
 };

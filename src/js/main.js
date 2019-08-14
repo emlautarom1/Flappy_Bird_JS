@@ -8,7 +8,7 @@ function loadImage(url) {
     });
 }
 
-function updatePipes() {
+function updatePipes(dt) {
     if (pipes[0].isLeftOfScreen()) {
         pipes.splice(0, 1);
     }
@@ -16,7 +16,7 @@ function updatePipes() {
         score.increase();
         spawnPipe();
     }
-    pipes.forEach(p => p.update());
+    pipes.forEach(p => p.update(dt));
 }
 
 function needToSpawnPipe() {
@@ -72,15 +72,15 @@ function onDeath() {
     deathAudio.play();
     alert(`You lost! Your score: ${score.value}`);
     initGameObjects();
-    mainLoop();
+    gameLoop();
 }
 
-function mainLoop() {
+function gameLoop(dt) {
     draw.clear();
     // Update
-    background.update();
-    player.update();
-    updatePipes();
+    background.update(dt);
+    player.update(dt);
+    updatePipes(dt);
 
     // Draw
     draw.landscape(background);
@@ -90,20 +90,19 @@ function mainLoop() {
 
     // Collision detection
     if (didCollide(player, pipes)) {
-        onDeath();
-        return;
+        // onDeath();
+        // return;
     }
-
-    // Animation looper
-    window.requestAnimationFrame(mainLoop);
 }
 
 // Initial setup
 const canvas = document.getElementById('canvas');
+const dpr = window.devicePixelRatio || 1;
+canvas.setAttribute('width', GLOBAL.CANVAS_W * dpr);
+canvas.setAttribute('height', GLOBAL.CANVAS_H * dpr);
 const ctx = canvas.getContext('2d');
+ctx.scale(dpr, dpr);
 ctx.imageSmoothingEnabled = false; // Disable AA
-canvas.setAttribute('width', GLOBAL.CANVAS_W);
-canvas.setAttribute('height', GLOBAL.CANVAS_H);
 
 // Utils
 const draw = new Draw(ctx);
@@ -121,11 +120,21 @@ let score;
 document.onclick = () => player.handler();
 document.ontouchend = () => player.handler();
 
+// Animation Loop
+let lastTime = 0;
+function animatedLoop(mil) {
+    if (lastTime) {
+        gameLoop((mil - lastTime) / 10);
+    };
+    lastTime = mil;
+    window.requestAnimationFrame(animatedLoop);
+}
+
 // On assets load
 loadImage('src/img/tiles.png').then(
     img => {
         draw.tiles = img;
         initGameObjects();
-        mainLoop();
+        animatedLoop();
     }
 );

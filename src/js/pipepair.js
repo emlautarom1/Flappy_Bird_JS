@@ -24,8 +24,8 @@ class PipePair {
         return this.x < -(PipePair.w);
     }
 
-    update() {
-        this.x -= GLOBAL.SPEED;
+    update(dt) {
+        this.x -= GLOBAL.SPEED * dt;
     }
 
 }
