@@ -1,4 +1,5 @@
 # Flappy Bird JS
+![Banner](screens/banner.png)
 
 ## From-scratch version of Flappy Bird built in plain JavaScript/CSS/HTML
 
